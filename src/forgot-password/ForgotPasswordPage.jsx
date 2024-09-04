@@ -108,6 +108,7 @@ const ForgotPasswordPage = (props) => {
         <div id="main-content" className="main-content">
           <Form id="forget-password-form" name="forget-password-form" className="mw-xs">
             <ForgotPasswordAlert email={bannerEmail} emailError={formErrors} status={status} />
+        { status !== 'complete' ? <>
             <h2 className="h4">
               {formatMessage(messages['forgot.password.page.heading'])}
             </h2>
@@ -157,6 +158,7 @@ const ForgotPasswordPage = (props) => {
                 <Hyperlink isInline destination={`mailto:${getConfig().INFO_EMAIL}`}>{getConfig().INFO_EMAIL}</Hyperlink>
               </span>
             </p>
+          </> :<></> }
           </Form>
         </div>
       </div>
