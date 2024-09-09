@@ -140,6 +140,7 @@ const ForgotPasswordPage = (props) => {
               onClick={handleSubmit}
               onMouseDown={(e) => e.preventDefault()}
             />
+          </> :<></> }
             {(getConfig().LOGIN_ISSUE_SUPPORT_LINK) && (
               <Hyperlink
                 id="forgot-password"
@@ -158,7 +159,6 @@ const ForgotPasswordPage = (props) => {
                 <Hyperlink isInline destination={`mailto:${getConfig().INFO_EMAIL}`}>{getConfig().INFO_EMAIL}</Hyperlink>
               </span>
             </p>
-          </> :<></> }
           </Form>
         </div>
       </div>
