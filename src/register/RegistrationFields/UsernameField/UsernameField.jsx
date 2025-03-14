@@ -48,7 +48,7 @@ const UsernameField = (props) => {
    * This is needed because we are placing the username suggestions on top of the field.
    */
   useEffect(() => {
-    if (usernameSuggestions.length && !value) {
+    if (usernameSuggestions.length && !value && !containsChineseCharacters(value)) {
       handleChange({ target: { name: 'username', value: ' ' } });
     }
   }, [handleChange, usernameSuggestions, value]);
@@ -58,9 +58,14 @@ const UsernameField = (props) => {
     const fieldError = validateUsername(username, formatMessage);
     if (fieldError) {
       handleErrorChange('username', fieldError);
-    } else if (!validationApiRateLimited) {
+    } else if (!validationApiRateLimited && !containsChineseCharacters(username)) {
       dispatch(fetchRealtimeValidations({ username }));
     }
+  };
+
+  // 检测是否包含中文字符的辅助函数
+  const containsChineseCharacters = (str) => {
+    return /[\u4e00-\u9fa5]/.test(str);
   };
 
   const handleOnChange = (event) => {
